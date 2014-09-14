@@ -63,6 +63,8 @@
     </Compile>
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="DemoViewModel.cs" />
+    <Compile Include="DummyDataProvider.cs" />
+    <Compile Include="enums.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
