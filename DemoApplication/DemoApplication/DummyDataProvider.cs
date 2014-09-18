@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Collections.ObjectModel;
 
 namespace AmadeusW.DemoApplication
 {
@@ -16,6 +17,16 @@ namespace AmadeusW.DemoApplication
         {
             Thread.Sleep(1000);
             return;
+        }
+
+        internal ObservableCollection<DemoObject> CreateDemoData(int howManyPieces)
+        {
+            var items = new List<DemoObject>();
+            for (int i = 0; i < howManyPieces; i++)
+            {
+                items.Add(new DemoObject());
+            }
+            return new ObservableCollection<DemoObject>(items);
         }
     }
 }

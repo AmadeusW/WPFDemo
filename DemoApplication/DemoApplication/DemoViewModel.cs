@@ -74,6 +74,34 @@ namespace AmadeusW.DemoApplication
             }
         }
 
+        private ObservableCollection<DemoObject> _demoItems1;
+        public ObservableCollection<DemoObject> demoItems1
+        {
+            get
+            {
+                return _demoItems1;
+            }
+            set
+            {
+                _demoItems1 = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<DemoObject> _demoItems2;
+        public ObservableCollection<DemoObject> demoItems2
+        {
+            get
+            {
+                return _demoItems2;
+            }
+            set
+            {
+                _demoItems2 = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Command handlers
@@ -102,12 +130,24 @@ namespace AmadeusW.DemoApplication
             Status = MessageStatus.InfoMessage;
 
             // Show the next screen
-            GoToStep(ApplicationSteps.ChooseView);
+            ActiveStep = ApplicationSteps.ChooseView;
         }
 
-        internal void GoToStep(ApplicationSteps targetStep)
+        internal void SeeDemoData1()
         {
-            ActiveStep = targetStep;
+            ActiveStep = ApplicationSteps.DemoData1;
+            demoItems1 = provider.CreateDemoData(50);
+        }
+
+        internal void SeeDemoData2()
+        {
+            ActiveStep = ApplicationSteps.DemoData2;
+            demoItems2 = provider.CreateDemoData(50);
+        }
+
+        internal void GoBackToChoiceScreen()
+        {
+            ActiveStep = ApplicationSteps.ChooseView;
         }
 
         #endregion

@@ -62,6 +62,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="DemoObject.cs" />
     <Compile Include="DemoViewModel.cs" />
     <Compile Include="DummyDataProvider.cs" />
     <Compile Include="enums.cs" />
