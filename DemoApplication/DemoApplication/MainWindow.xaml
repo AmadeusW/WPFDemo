@@ -1,8 +1,36 @@
 ﻿<Window x:Class="AmadeusW.DemoApplication.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AmadeusW.DemoApplication"
+        xmlns:converters="clr-namespace:AmadeusW.DemoApplication.Converters"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <Window.Resources>
+        <converters:StepToVisibilityConverter x:Key="StepToVisibilityConverter"/>
+    </Window.Resources>    
+    <Window.DataContext>
+        <local:DemoViewModel />
+    </Window.DataContext>
+    <StackPanel>
+        <!-- Login screen -->
+        <Grid Visibility="{Binding ActiveStep, Converter={StaticResource StepToVisibilityConverter}, ConverterParameter=LogIn, FallbackValue=Collapsed}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" >
+                <TextBlock Margin="10" Text="Hi. Please log in." />
+                <TextBox Margin="10" Text="{Binding UserName}" />
+                <PasswordBox x:Name="passwordBox" Margin="10" />
+                <Button Margin="10" Content="Log In" Command="{Binding LogInCommand}" CommandParameter="{Binding ElementName=passwordBox}" IsDefault="True" />
+                <TextBlock Text="{Binding Message}" />
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </Window>
